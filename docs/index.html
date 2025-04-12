@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A/B Redirect</title>
+  <script>
+    window.onload = function () {
+      let abVersion = localStorage.getItem('ab_version');
+      if (!abVersion) {
+        abVersion = Math.random() < 0.5 ? 'A' : 'B';
+        localStorage.setItem('ab_version', abVersion);
+      }
+
+      if (abVersion === 'A') {
+        window.location.href = 'https://vet-eran.webflow.io/';
+      } else {
+        window.location.href = 'https://vet-eran-2.webflow.io/';
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting to test page...</p>
+</body>
+</html>
