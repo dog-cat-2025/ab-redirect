@@ -3,23 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <title>A/B Redirect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>
     window.onload = function () {
+      // 기존에 저장된 버전 확인
       let abVersion = localStorage.getItem('ab_version');
-      if (!abVersion) {
+
+      // 저장된 값이 없거나 잘못된 경우 → 무작위로 A 또는 B 선택 후 저장
+      if (abVersion !== 'A' && abVersion !== 'B') {
         abVersion = Math.random() < 0.5 ? 'A' : 'B';
         localStorage.setItem('ab_version', abVersion);
       }
 
+      // 해당 버전으로 리디렉션
       if (abVersion === 'A') {
-        window.location.href = 'https://vet-eran.webflow.io/';
+        window.location.replace('https://vet-eran.webflow.io/');
       } else {
-        window.location.href = 'https://vet-eran-2.webflow.io/';
+        window.location.replace('https://vet-eran-2.webflow.io/');
       }
     };
   </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to test page...</p>
+  <p>Redirecting to your test page...</p>
 </body>
 </html>
